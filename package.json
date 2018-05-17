@@ -79,7 +79,7 @@
     "jobs": "tsc && node jobs/scheduler.js",
     "lint": "tslint --project .",
     "parse": "apg -i core/term/controller/grammar/Expression-ABNF.txt -o core/term/controller/grammar/grammar.js",
-    "test": "test"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
