@@ -1,10 +1,7 @@
 import { pacienteApp } from '../schemas/pacienteApp';
-import { buscarPaciente } from '../../../core/mpi/controller/paciente';
-
 import * as express from 'express';
 import * as authController from '../controller/AuthController';
 import { Auth } from '../../../auth/auth.class';
-import * as labsImport from '../../cda/controller/import-labs';
 
 const router = express.Router();
 
@@ -58,12 +55,7 @@ router.post('/login', (req, res, next) => {
                     user
                 });
 
-                // Hack momentaneo. Descargamos los laboratorios a demanda.
-                buscarPaciente(user.pacientes[0].id).then((resultado) => {
-                    if (resultado.paciente) {
-                        labsImport.importarDatos(resultado.paciente);
-                    }
-                });
+                // [TODO] Ver evento de laboratorio con webhook
 
                 return;
             } else {
